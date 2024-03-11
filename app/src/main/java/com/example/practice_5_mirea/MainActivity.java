@@ -14,15 +14,10 @@ import android.util.AttributeSet;
 import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
-    NavController navController;
-    NavHostFragment navHostFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment);
-        navController = navHostFragment.getNavController();
     }
 }
