@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Practice_5_mirea</string>
+
+    <string name="fragment_main_text_view_text">Введите наименование товара</string>
+    <string name="fragment_main_egit_text_hint">Наименование товара</string>
+    <string name="fragment_main_button_text">Перейти к выбору количества</string>
+
+    <string name="fragment_first_text_view_1_text">Вы выбрали товар:</string>
+    <string name="fragment_first_text_view_3_text">Введите количество выбранного товара</string>
+    <string name="fragment_first_egit_text_hint">Количество товара</string>
+    <string name="fragment_first_button_text">Заказать</string>
+
+    <string name="fragment_second_text_view_text">Вы заказали:</string>
+</resources>
