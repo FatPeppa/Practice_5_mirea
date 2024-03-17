@@ -11,4 +11,5 @@
     <string name="fragment_first_button_text">Заказать</string>
 
     <string name="fragment_second_text_view_text">Вы заказали:</string>
+    <string name="fragment_second_button_1_text">Показать уведомление</string>
 </resources>
