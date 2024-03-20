@@ -34,6 +34,7 @@ public class SecondFragment extends Fragment {
 
     TextView second_fragment_text_view;
     Button button;
+
     public SecondFragment() {
         super(R.layout.fragment_second);
     }
@@ -54,8 +55,8 @@ public class SecondFragment extends Fragment {
 
         Context context = getContext();
 
-        NotificationManager notificationManager =
-                (NotificationManager) getActivity().getSystemService(Context.NOTIFICATION_SERVICE);
+        NotificationManagerCompat notificationManager =
+                (NotificationManagerCompat) NotificationManagerCompat.from(getContext());
 
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
             NotificationChannel channel = new NotificationChannel(CHANNEL_ID, "GoodsChannel",
@@ -82,7 +83,9 @@ public class SecondFragment extends Fragment {
                                     .setContentText(contentText);
 
                     Notification notification = builder.build();
-                    notificationManager.notify(1, notification);
+                    if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+                        return;
+                    } else notificationManager.notify(1, notification);
                 }
             });
         } else {
