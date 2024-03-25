@@ -6,7 +6,7 @@
     app:startDestination="@id/mainFragment">
     <fragment
         android:id="@+id/mainFragment"
-        android:name="com.example.practice_5_mirea.MainFragment"
+        android:name="com.example.practice_5_mirea.ui.MainFragment"
         android:label="Blank"
         tools:layout="@layout/fragment_main">
 
@@ -17,7 +17,7 @@
 
     <fragment
         android:id="@+id/firstFragment"
-        android:name="com.example.practice_5_mirea.FirstFragment"
+        android:name="com.example.practice_5_mirea.ui.FirstFragment"
         android:label="Blank"
         tools:layout="@layout/fragment_first">
 
@@ -28,7 +28,7 @@
 
     <fragment
         android:id="@+id/secondFragment"
-        android:name="com.example.practice_5_mirea.SecondFragment"
+        android:name="com.example.practice_5_mirea.ui.SecondFragment"
         android:label="Blank"
         tools:layout="@layout/fragment_second"/>
 </navigation>

@@ -1,4 +1,4 @@
-package com.example.practice_5_mirea;
+package com.example.practice_5_mirea.ui;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -24,6 +24,8 @@ import android.provider.Settings;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.Toast;
+
+import com.example.practice_5_mirea.R;
 
 public class MainActivity extends AppCompatActivity {
 

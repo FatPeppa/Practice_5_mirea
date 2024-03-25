@@ -1,4 +1,6 @@
-package com.example.practice_5_mirea;
+package com.example.practice_5_mirea.ui;
+
+import static com.example.practice_5_mirea.InputsValidator.checkGoodName;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
@@ -15,14 +17,21 @@ import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
+import com.example.practice_5_mirea.InputsValidator;
+import com.example.practice_5_mirea.R;
+import com.example.practice_5_mirea.data.GoodOrderRepository;
+
 import java.util.ArrayList;
 
 public class MainFragment extends Fragment {
     Button main_fragment_button;
     EditText main_fragment_edit_text;
 
+    GoodOrderRepository order;
+
     public MainFragment() {
         super(R.layout.fragment_main);
+        order = new GoodOrderRepository();
     }
 
     @Override
@@ -37,12 +46,11 @@ public class MainFragment extends Fragment {
             public void onClick(View view) {
                 String good_name = main_fragment_edit_text.getText().toString();
 
-                if (good_name.length() > 0 && !isNumeric(good_name)) {
-                    ArrayList<String> message =  new ArrayList<String>();
-                    message.add(good_name);
+                if (checkGoodName(good_name)) {
+                    order.setGoodName(good_name);
 
                     Bundle bundle = new Bundle();
-                    bundle.putStringArrayList("goodName",  message);
+                    bundle.putSerializable("Order", order);
                     Navigation.findNavController(view).navigate(R.id.action_mainFragment_to_firstFragment, bundle);
                 } else {
                     main_fragment_edit_text.setText("");
@@ -50,14 +58,5 @@ public class MainFragment extends Fragment {
                 }
             }
         });
-    }
-
-    public static boolean isNumeric(String str) {
-        try {
-            Double.parseDouble(str);
-            return true;
-        } catch(NumberFormatException e){
-            return false;
-        }
     }
 }

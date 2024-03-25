@@ -1,6 +1,6 @@
-package com.example.practice_5_mirea;
+package com.example.practice_5_mirea.ui;
 
-import static com.example.practice_5_mirea.MainFragment.isNumeric;
+import static com.example.practice_5_mirea.InputsValidator.checkGoodAmount;
 
 import android.os.Bundle;
 import android.view.View;
@@ -13,17 +13,21 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
-import org.w3c.dom.Text;
-
-import java.util.ArrayList;
+import com.example.practice_5_mirea.data.GoodOrderRepository;
+import com.example.practice_5_mirea.R;
 
 public class FirstFragment extends Fragment {
+    GoodOrderRepository order;
     Button first_fragment_button;
     TextView first_fragment_text_view;
     EditText first_fragment_edit_text;
 
-    public FirstFragment() {
-        super(R.layout.fragment_first);
+    public FirstFragment() {super(R.layout.fragment_first);}
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        order = (GoodOrderRepository)  getArguments().getSerializable("Order");
     }
 
     @Override
@@ -34,8 +38,7 @@ public class FirstFragment extends Fragment {
         first_fragment_text_view = (TextView) getActivity().findViewById(R.id.fragment_first_text_view2);
         first_fragment_edit_text = (EditText) getActivity().findViewById(R.id.fragment_first_edit_text);
 
-        String good_name = parseInputsGoods(this.getArguments().getStringArrayList("goodName"),
-                GoodParameterType.GOOD_NAME);
+        String good_name = order.getGoodName();
         first_fragment_text_view.setText(good_name);
 
         first_fragment_button.setOnClickListener(new View.OnClickListener() {
@@ -43,13 +46,11 @@ public class FirstFragment extends Fragment {
             public void onClick(View view) {
                 String good_amount = first_fragment_edit_text.getText().toString();
 
-                if (good_amount.length() > 0 && isNumeric(good_amount)) {
-                    ArrayList<String> message =  new ArrayList<String>();
-                    message.add(good_name);
-                    message.add(good_amount);
+                if (checkGoodAmount(good_amount)) {
+                    order.setGoodAmount(good_amount);
 
                     Bundle bundle = new Bundle();
-                    bundle.putStringArrayList("goodNameGoodAmount",  message);
+                    bundle.putSerializable("Order", order);
                     Navigation.findNavController(view).navigate(R.id.action_firstFragment_to_secondFragment, bundle);
                 } else {
                     first_fragment_edit_text.setText("");
@@ -57,16 +58,5 @@ public class FirstFragment extends Fragment {
                 }
             }
         });
-    }
-
-    public static String parseInputsGoods(ArrayList<String> array, GoodParameterType type) {
-        switch (type) {
-            case GOOD_NAME:
-                return array.get(0);
-            case GOOD_AMOUNT:
-                return array.get(1);
-            default:
-                return null;
-        }
     }
 }
