@@ -24,38 +24,33 @@ import com.example.practice_5_mirea.data.GoodOrderRepository;
 import java.util.ArrayList;
 
 public class MainFragment extends Fragment {
-    Button main_fragment_button;
+    Button main_fragment_button1;
+    Button main_fragment_button2;
     EditText main_fragment_edit_text;
-
-    GoodOrderRepository order;
 
     public MainFragment() {
         super(R.layout.fragment_main);
-        order = new GoodOrderRepository();
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        main_fragment_button = (Button) getActivity().findViewById(R.id.fragment_main_button);
-        main_fragment_edit_text = (EditText) getActivity().findViewById(R.id.fragment_main_edit_text);
+        main_fragment_button1 = (Button) getActivity().findViewById(R.id.fragment_main_button1);
+        main_fragment_button2 = (Button) getActivity().findViewById(R.id.fragment_main_button2);
 
-        main_fragment_button.setOnClickListener(new View.OnClickListener() {
-            @Override
+        //переход к товару
+        main_fragment_button1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                String good_name = main_fragment_edit_text.getText().toString();
+                Navigation.findNavController(view).navigate(R.id.action_mainFragment_to_firstFragment);
+            }
+        });
 
-                if (checkGoodName(good_name)) {
-                    order.setGoodName(good_name);
-
-                    Bundle bundle = new Bundle();
-                    bundle.putSerializable("Order", order);
-                    Navigation.findNavController(view).navigate(R.id.action_mainFragment_to_firstFragment, bundle);
-                } else {
-                    main_fragment_edit_text.setText("");
-                    main_fragment_edit_text.setHint(getResources().getString(R.string.fragment_main_egit_text_hint));
-                }
+        //переход к списку
+        main_fragment_button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(view).navigate(R.id.action_mainFragment_to_thirdFragment);
             }
         });
     }

@@ -1,17 +1,26 @@
 <resources>
     <string name="app_name">Practice_5_mirea</string>
 
-    <string name="fragment_main_text_view_text">Введите наименование товара</string>
-    <string name="fragment_main_egit_text_hint">Наименование товара</string>
-    <string name="fragment_main_button_text">Перейти к выбору количества</string>
 
-    <string name="fragment_first_text_view_1_text">Вы выбрали товар:</string>
-    <string name="fragment_first_text_view_3_text">Введите количество выбранного товара</string>
-    <string name="fragment_first_egit_text_hint">Количество товара</string>
+    <string name="fragment_main_button_text1">Заказать товар</string>
+    <string name="fragment_main_button_text2">Просмотреть заказанные товары</string>
+
+    <string name="fragment_first_text_view_text1">Введите наименование товара</string>
+    <string name="fragment_first_text_view_2_text">Введите количество выбранного товара</string>
+    <string name="fragment_first_egit_text_hint1">Наименование товара</string>
+    <string name="fragment_first_egit_text_hint2">Количество товара</string>
     <string name="fragment_first_button_text">Заказать</string>
 
-    <string name="fragment_second_text_view_text">Вы заказали:</string>
-    <string name="fragment_second_button_1_text">Показать уведомление</string>
+    <string name="fragment_second_text_view_text1">Вы ввели:</string>
+    <string name="fragment_second_text_view_text3">Вы уверены, что хотите заказать данный товар?</string>
+    <string name="fragment_second_button_text1">Вернуться ко вводу параметров товара</string>
+    <string name="fragment_second_button_text2">Да</string>
 
-    <string name="banner_service_text">Текст баннера</string>
+    <string name="fragment_third_button_text">Добавить ещё один товар</string>
+
+    <string name="first_fragment_list_view_item_text_view_text1">Наименование товара:</string>
+    <string name="first_fragment_list_view_item_text_view_text2">Стоимость товара:</string>
+
+    <string name="fragment_fourth_text_view_text">Параметры товара:</string>
+    <string name="fragment_fourth_button_text">Назад к списку</string>
 </resources>

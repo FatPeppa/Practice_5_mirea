@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/first_fragment_list_view_item_number"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/first_fragment_list_view_item_text_view1"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <TextView
+        android:id="@+id/first_fragment_list_view_item_text_view1"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/first_fragment_list_view_item_number"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/first_fragment_list_view_item_good_name"
+        app:layout_constraintBottom_toTopOf="@id/first_fragment_list_view_item_text_view2"
+        android:text="@string/first_fragment_list_view_item_text_view_text1"/>
+    <TextView
+        android:id="@+id/first_fragment_list_view_item_text_view2"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/first_fragment_list_view_item_text_view1"
+        app:layout_constraintStart_toEndOf="@id/first_fragment_list_view_item_number"
+        app:layout_constraintEnd_toStartOf="@id/first_fragment_list_view_item_good_amount"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="@string/first_fragment_list_view_item_text_view_text2"/>
+    <TextView
+        android:id="@+id/first_fragment_list_view_item_good_name"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toEndOf="@id/first_fragment_list_view_item_text_view1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/first_fragment_list_view_item_good_amount"/>
+    <TextView
+        android:id="@+id/first_fragment_list_view_item_good_amount"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/first_fragment_list_view_item_good_name"
+        app:layout_constraintStart_toEndOf="@id/first_fragment_list_view_item_text_view2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

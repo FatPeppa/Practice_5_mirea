@@ -4,24 +4,33 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <Button
-        android:id="@+id/fragment_main_button1"
+    <TextView
+        android:id="@+id/fragment_fourth_text_view1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/fragment_main_button2"
-        android:text="@string/fragment_main_button_text1"/>
+        app:layout_constraintBottom_toTopOf="@id/fragment_fourth_text_view2"
+        android:text="@string/fragment_fourth_text_view_text"/>
 
-    <Button
-        android:id="@+id/fragment_main_button2"
+    <TextView
+        android:id="@+id/fragment_fourth_text_view2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/fragment_main_button1"
+        app:layout_constraintTop_toBottomOf="@id/fragment_fourth_text_view1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/fragment_fourth_button"/>
+
+    <Button
+        android:id="@+id/fragment_fourth_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/fragment_fourth_text_view2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:text="@string/fragment_main_button_text2"/>
+        android:text="@string/fragment_fourth_button_text"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

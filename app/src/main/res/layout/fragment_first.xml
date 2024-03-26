@@ -11,39 +11,41 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/fragment_first_text_view2"
-        android:text="@string/fragment_first_text_view_1_text"/>
-    <TextView
-        android:id="@+id/fragment_first_text_view2"
+        app:layout_constraintBottom_toTopOf="@id/fragment_first_edit_text1"
+        android:text="@string/fragment_first_text_view_text1"/>
+    <EditText
+        android:id="@+id/fragment_first_edit_text1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/fragment_first_text_view1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/fragment_first_text_view3" />
+        app:layout_constraintBottom_toTopOf="@id/fragment_first_text_view2"
+        android:hint="@string/fragment_first_egit_text_hint1"/>
+
     <TextView
-        android:id="@+id/fragment_first_text_view3"
+        android:id="@+id/fragment_first_text_view2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/fragment_first_edit_text1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/fragment_first_edit_text2"
+        android:text="@string/fragment_first_text_view_2_text"/>
+    <EditText
+        android:id="@+id/fragment_first_edit_text2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/fragment_first_text_view2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/fragment_first_edit_text"
-        android:text="@string/fragment_first_text_view_3_text"/>
-    <EditText
-        android:id="@+id/fragment_first_edit_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/fragment_first_text_view3"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@id/fragment_first_button"
-        android:hint="@string/fragment_first_egit_text_hint"/>
+        android:hint="@string/fragment_first_egit_text_hint2"/>
     <Button
         android:id="@+id/fragment_first_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/fragment_first_edit_text"
+        app:layout_constraintTop_toBottomOf="@id/fragment_first_edit_text2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
