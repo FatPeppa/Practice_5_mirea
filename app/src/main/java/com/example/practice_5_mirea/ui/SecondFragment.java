@@ -11,14 +11,12 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
-import com.example.practice_5_mirea.data.GoodOrderRepository;
 import com.example.practice_5_mirea.R;
 import com.example.practice_5_mirea.viewModels.GoodViewModel;
 import com.example.practice_5_mirea.viewModels.OrderViewModel;
 
 
 public class SecondFragment extends Fragment {
-    GoodOrderRepository order;
 
     TextView second_fragment_text_view;
     Button secondFragmentButton1;
@@ -45,7 +43,7 @@ public class SecondFragment extends Fragment {
         GoodViewModel goodViewModel = new ViewModelProvider(getActivity()).get(GoodViewModel.class);
         OrderViewModel orderViewModel = new ViewModelProvider(getActivity()).get(OrderViewModel.class);
         goodViewModel.getUiState().observe(getViewLifecycleOwner(), uiState -> {
-            String info = uiState.getGoodName() + " " + uiState.getGoodAmount();
+            String info = uiState.getCurrentGoodName() + " " + uiState.getCurrentGoodAmount();
             second_fragment_text_view.setText(info);
         });
 
@@ -64,7 +62,7 @@ public class SecondFragment extends Fragment {
         secondFragmentButton2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                orderViewModel.addGoodToOrder(goodViewModel.getUiState().getValue());
+                orderViewModel.addGoodToOrder(goodViewModel.getUiState().getValue().getGood());
                 goodViewModel.inputGoodParameters(null, null);
 
                 Navigation.findNavController(view).navigate(R.id.action_secondFragment_to_thirdFragment);

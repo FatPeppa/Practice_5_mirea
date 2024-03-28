@@ -1,33 +1,21 @@
 package com.example.practice_5_mirea.ui;
 
-import static com.example.practice_5_mirea.InputsValidator.checkGoodName;
-
-import android.Manifest;
-import android.content.pm.PackageManager;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
-import com.example.practice_5_mirea.InputsValidator;
 import com.example.practice_5_mirea.R;
-import com.example.practice_5_mirea.data.GoodOrderRepository;
-
-import java.util.ArrayList;
 
 public class MainFragment extends Fragment {
     Button main_fragment_button1;
     Button main_fragment_button2;
     EditText main_fragment_edit_text;
-
     public MainFragment() {
         super(R.layout.fragment_main);
     }

@@ -2,12 +2,10 @@ package com.example.practice_5_mirea.ui;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,18 +19,18 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.practice_5_mirea.R;
-import com.example.practice_5_mirea.data.GoodRepository;
-import com.example.practice_5_mirea.data.GoodRepositoryImpl;
+import com.example.practice_5_mirea.data.model.Good;
+import com.example.practice_5_mirea.data.repository.GoodRepository;
+import com.example.practice_5_mirea.data.repository.GoodRepositoryImpl;
 import com.example.practice_5_mirea.viewModels.OrderViewModel;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ThirdFragment extends Fragment {
     public static class SecondFragmentRecyclerViewAdapter extends
             RecyclerView.Adapter <SecondFragmentRecyclerViewAdapter.ViewHolder>{
         private final LayoutInflater inflater;
-        private final List<GoodRepository> items;
+        private final List<Good> items;
 
         //
         private OnItemClicked onClick;
@@ -42,7 +40,7 @@ public class ThirdFragment extends Fragment {
         }
         //
 
-        SecondFragmentRecyclerViewAdapter(Context context, List<GoodRepository>
+        SecondFragmentRecyclerViewAdapter(Context context, List<Good>
                 items) {
             this.items = items;
             this.inflater = LayoutInflater.from(context);
@@ -58,7 +56,7 @@ public class ThirdFragment extends Fragment {
         public void
         onBindViewHolder(SecondFragmentRecyclerViewAdapter.ViewHolder
                                  holder, int position) {
-            GoodRepository item = items.get(position);
+            Good item = items.get(position);
             holder.textView1.setText(item.getGoodName());
             holder.textView2.setText(item.getGoodAmount());
             String number = Integer.toString(position + 1);
@@ -113,7 +111,7 @@ public class ThirdFragment extends Fragment {
         OrderViewModel orderViewModel = new ViewModelProvider(getActivity()).get(OrderViewModel.class);
 
         orderViewModel.getUiState().observe(getViewLifecycleOwner(), uiState -> {
-            List<GoodRepository> items = uiState.getOrderedPositions();
+            List<Good> items = uiState.getOrderedPositions();
 
             if (items == null || items.size() == 0) {
                 itemsList.setVisibility(View.GONE);
@@ -132,7 +130,7 @@ public class ThirdFragment extends Fragment {
                     @Override
                     public void onItemClick(int position) {
                         if (orderViewModel.getUiState().getValue() != null) {
-                            GoodRepositoryImpl good = (GoodRepositoryImpl) orderViewModel.getUiState().getValue().getGood(position);
+                            Good good = (Good) orderViewModel.getUiState().getValue().getGood(position);
                             Bundle bundle = new Bundle();
                             bundle.putSerializable("Good", good);
                             navController.navigate(R.id.action_thirdFragment_to_fourthFragment, bundle);

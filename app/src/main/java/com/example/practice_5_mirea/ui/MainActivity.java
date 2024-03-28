@@ -39,8 +39,5 @@ public class MainActivity extends AppCompatActivity {
 
         GoodViewModel goodViewModel = new ViewModelProvider(this).get(GoodViewModel.class);
         OrderViewModel orderViewModel = new ViewModelProvider(this).get(OrderViewModel.class);
-        /*goodViewModel.getUiState().observe(this, uiState -> {
-            uiState.getGoodAmount();
-        });*/
     }
 }

@@ -13,7 +13,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@id/fragment_fourth_text_view2"
         android:text="@string/fragment_fourth_text_view_text"/>
-
     <TextView
         android:id="@+id/fragment_fourth_text_view2"
         android:layout_width="wrap_content"
@@ -22,7 +21,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@id/fragment_fourth_button"/>
-
     <Button
         android:id="@+id/fragment_fourth_button"
         android:layout_width="wrap_content"

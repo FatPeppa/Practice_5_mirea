@@ -4,10 +4,10 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.example.practice_5_mirea.data.GoodRepository;
-import com.example.practice_5_mirea.data.GoodRepositoryImpl;
-import com.example.practice_5_mirea.data.OrderRepository;
-import com.example.practice_5_mirea.data.OrderRepositoryImpl;
+import com.example.practice_5_mirea.data.model.Good;
+import com.example.practice_5_mirea.data.repository.GoodRepository;
+import com.example.practice_5_mirea.data.repository.OrderRepository;
+import com.example.practice_5_mirea.data.repository.OrderRepositoryImpl;
 
 import java.util.ArrayList;
 
@@ -18,13 +18,13 @@ public class OrderViewModel extends ViewModel {
         return uiState;
     }
 
-    public void addGoodToOrder(GoodRepository good) {
+    public void addGoodToOrder(Good good) {
         OrderRepository order;
         order = uiState.getValue();
         if (order != null)
             order.putGood(good);
         else {
-            ArrayList<GoodRepository> goods = new ArrayList<>();
+            ArrayList<Good> goods = new ArrayList<>();
             goods.add(good);
             order = new OrderRepositoryImpl(goods);
         }

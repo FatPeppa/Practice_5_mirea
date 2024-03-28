@@ -1,16 +1,14 @@
-package com.example.practice_5_mirea.data;
-
-import android.os.Parcelable;
+package com.example.practice_5_mirea.data.model;
 
 import java.io.Serializable;
 
-public class GoodOrderRepository implements Serializable {
+public class Good implements Serializable {
     private String goodName;
     private String goodAmount;
 
-    public GoodOrderRepository() {}
+    public Good() {}
 
-    public GoodOrderRepository(String goodName, String goodAmount) {
+    public Good(String goodName, String goodAmount) {
         this.goodName = goodName;
         this.goodAmount = goodAmount;
     }

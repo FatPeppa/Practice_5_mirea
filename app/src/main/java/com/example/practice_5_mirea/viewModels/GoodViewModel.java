@@ -4,8 +4,8 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.example.practice_5_mirea.data.GoodRepository;
-import com.example.practice_5_mirea.data.GoodRepositoryImpl;
+import com.example.practice_5_mirea.data.repository.GoodRepository;
+import com.example.practice_5_mirea.data.repository.GoodRepositoryImpl;
 
 public class GoodViewModel extends ViewModel {
     private final MutableLiveData<GoodRepository> uiState =

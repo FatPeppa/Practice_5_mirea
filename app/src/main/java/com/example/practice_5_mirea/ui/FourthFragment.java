@@ -12,18 +12,15 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
 import com.example.practice_5_mirea.R;
-import com.example.practice_5_mirea.data.GoodOrderRepository;
-import com.example.practice_5_mirea.data.GoodRepository;
-import com.example.practice_5_mirea.data.GoodRepositoryImpl;
+import com.example.practice_5_mirea.data.model.Good;
+import com.example.practice_5_mirea.data.repository.GoodRepository;
 
 public class FourthFragment extends Fragment {
     Button goBack;
     TextView goodInfo;
-
     public FourthFragment() {
         super(R.layout.fragment_fourth);
     }
-
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -32,10 +29,10 @@ public class FourthFragment extends Fragment {
         goBack = (Button) getActivity().findViewById(R.id.fragment_fourth_button);
 
         Bundle args = getArguments();
-        GoodRepository good = null;
+        Good good = null;
 
         if (args != null) {
-            good = (GoodRepository) args.getSerializable("Good");
+            good = (Good) args.getSerializable("Good");
             String info = good != null ? good.getGoodName() + " " + good.getGoodAmount() : null;
             goodInfo.setText(info);
         } else {

@@ -3,22 +3,17 @@ package com.example.practice_5_mirea.ui;
 import static com.example.practice_5_mirea.InputsValidator.checkGoodAmount;
 import static com.example.practice_5_mirea.InputsValidator.checkGoodName;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.lifecycle.ViewModelStoreOwner;
 import androidx.navigation.Navigation;
 
-import com.example.practice_5_mirea.data.GoodOrderRepository;
 import com.example.practice_5_mirea.R;
 import com.example.practice_5_mirea.viewModels.GoodViewModel;
 
@@ -44,9 +39,9 @@ public class FirstFragment extends Fragment {
         GoodViewModel goodViewModel = new ViewModelProvider(getActivity()).get(GoodViewModel.class);
 
         goodViewModel.getUiState().observe(getViewLifecycleOwner(), uiState -> {
-            if (uiState.getGoodName() != null && uiState.getGoodAmount() != null) {
-                first_fragment_edit_text1.setText(uiState.getGoodName());
-                first_fragment_edit_text2.setText(uiState.getGoodAmount());
+            if (uiState.getCurrentGoodName() != null && uiState.getCurrentGoodAmount() != null) {
+                first_fragment_edit_text1.setText(uiState.getCurrentGoodName());
+                first_fragment_edit_text2.setText(uiState.getCurrentGoodAmount());
             }
         });
 
