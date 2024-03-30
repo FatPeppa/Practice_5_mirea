@@ -1,4 +1,4 @@
-package com.example.practice_5_mirea;
+package com.example.practice_5_mirea.domain;
 
 public class InputsValidator {
     public static boolean checkGoodName(String goodName) {

@@ -1,7 +1,7 @@
 package com.example.practice_5_mirea.ui.view;
 
-import static com.example.practice_5_mirea.InputsValidator.checkGoodAmount;
-import static com.example.practice_5_mirea.InputsValidator.checkGoodName;
+import static com.example.practice_5_mirea.domain.InputsValidator.checkGoodAmount;
+import static com.example.practice_5_mirea.domain.InputsValidator.checkGoodName;
 
 import android.os.Bundle;
 import android.view.View;
