@@ -1,4 +1,4 @@
-package com.example.practice_5_mirea.ui;
+package com.example.practice_5_mirea.ui.view;
 
 import android.os.Bundle;
 import android.view.View;
@@ -12,8 +12,8 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import com.example.practice_5_mirea.R;
-import com.example.practice_5_mirea.viewModels.GoodViewModel;
-import com.example.practice_5_mirea.viewModels.OrderViewModel;
+import com.example.practice_5_mirea.ui.viewModels.GoodViewModel;
+import com.example.practice_5_mirea.ui.viewModels.OrderViewModel;
 
 
 public class SecondFragment extends Fragment {

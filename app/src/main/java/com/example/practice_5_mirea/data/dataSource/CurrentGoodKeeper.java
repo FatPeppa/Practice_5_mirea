@@ -1,6 +1,6 @@
 package com.example.practice_5_mirea.data.dataSource;
 
-import com.example.practice_5_mirea.data.model.Good;
+import com.example.practice_5_mirea.data.models.Good;
 
 public class CurrentGoodKeeper {
     private final Good[] currentGood = new Good[1];

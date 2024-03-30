@@ -1,4 +1,4 @@
-package com.example.practice_5_mirea.ui;
+package com.example.practice_5_mirea.ui.view;
 
 import android.os.Bundle;
 import android.view.View;
@@ -12,8 +12,7 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
 import com.example.practice_5_mirea.R;
-import com.example.practice_5_mirea.data.model.Good;
-import com.example.practice_5_mirea.data.repository.GoodRepository;
+import com.example.practice_5_mirea.data.models.Good;
 
 public class FourthFragment extends Fragment {
     Button goBack;

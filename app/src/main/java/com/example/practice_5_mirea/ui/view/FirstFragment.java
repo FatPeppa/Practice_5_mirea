@@ -1,4 +1,4 @@
-package com.example.practice_5_mirea.ui;
+package com.example.practice_5_mirea.ui.view;
 
 import static com.example.practice_5_mirea.InputsValidator.checkGoodAmount;
 import static com.example.practice_5_mirea.InputsValidator.checkGoodName;
@@ -15,7 +15,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import com.example.practice_5_mirea.R;
-import com.example.practice_5_mirea.viewModels.GoodViewModel;
+import com.example.practice_5_mirea.ui.viewModels.GoodViewModel;
 
 public class FirstFragment extends Fragment {
     Button first_fragment_button;

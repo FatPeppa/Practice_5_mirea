@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/mainFragment"
-        android:name="com.example.practice_5_mirea.ui.MainFragment"
+        android:name="com.example.practice_5_mirea.ui.view.MainFragment"
         android:label="Blank"
         tools:layout="@layout/fragment_main">
 
@@ -21,7 +21,7 @@
 
     <fragment
         android:id="@+id/firstFragment"
-        android:name="com.example.practice_5_mirea.ui.FirstFragment"
+        android:name="com.example.practice_5_mirea.ui.view.FirstFragment"
         android:label="Blank"
         tools:layout="@layout/fragment_first">
 
@@ -32,7 +32,7 @@
 
     <fragment
         android:id="@+id/secondFragment"
-        android:name="com.example.practice_5_mirea.ui.SecondFragment"
+        android:name="com.example.practice_5_mirea.ui.view.SecondFragment"
         android:label="Blank"
         tools:layout="@layout/fragment_second">
         <action
@@ -45,7 +45,7 @@
 
     <fragment
         android:id="@+id/thirdFragment"
-        android:name="com.example.practice_5_mirea.ui.ThirdFragment"
+        android:name="com.example.practice_5_mirea.ui.view.ThirdFragment"
         android:label="Blank"
         tools:layout="@layout/fragment_third">
         <action
@@ -58,7 +58,7 @@
 
     <fragment
         android:id="@+id/fourthFragment"
-        android:name="com.example.practice_5_mirea.ui.FourthFragment"
+        android:name="com.example.practice_5_mirea.ui.view.FourthFragment"
         android:label="Blank"
         tools:layout="@layout/fragment_fourth">
         <action

@@ -1,6 +1,6 @@
 package com.example.practice_5_mirea.data.dataSource;
 
-import com.example.practice_5_mirea.data.model.Good;
+import com.example.practice_5_mirea.data.models.Good;
 
 import java.util.ArrayList;
 import java.util.Collections;

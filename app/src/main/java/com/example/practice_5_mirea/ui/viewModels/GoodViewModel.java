@@ -1,4 +1,4 @@
-package com.example.practice_5_mirea.viewModels;
+package com.example.practice_5_mirea.ui.viewModels;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

@@ -1,11 +1,10 @@
-package com.example.practice_5_mirea.viewModels;
+package com.example.practice_5_mirea.ui.viewModels;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.example.practice_5_mirea.data.model.Good;
-import com.example.practice_5_mirea.data.repository.GoodRepository;
+import com.example.practice_5_mirea.data.models.Good;
 import com.example.practice_5_mirea.data.repository.OrderRepository;
 import com.example.practice_5_mirea.data.repository.OrderRepositoryImpl;
 

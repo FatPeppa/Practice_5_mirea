@@ -1,4 +1,4 @@
-package com.example.practice_5_mirea.data.model;
+package com.example.practice_5_mirea.data.models;
 
 import java.io.Serializable;
 

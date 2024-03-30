@@ -1,6 +1,6 @@
 package com.example.practice_5_mirea.data.repository;
 
-import com.example.practice_5_mirea.data.model.Good;
+import com.example.practice_5_mirea.data.models.Good;
 
 public interface GoodRepository {
     String getCurrentGoodName();

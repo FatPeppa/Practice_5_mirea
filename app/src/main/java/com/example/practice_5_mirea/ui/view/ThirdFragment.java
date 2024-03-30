@@ -1,4 +1,4 @@
-package com.example.practice_5_mirea.ui;
+package com.example.practice_5_mirea.ui.view;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -19,10 +19,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.practice_5_mirea.R;
-import com.example.practice_5_mirea.data.model.Good;
-import com.example.practice_5_mirea.data.repository.GoodRepository;
-import com.example.practice_5_mirea.data.repository.GoodRepositoryImpl;
-import com.example.practice_5_mirea.viewModels.OrderViewModel;
+import com.example.practice_5_mirea.data.models.Good;
+import com.example.practice_5_mirea.ui.viewModels.OrderViewModel;
 
 import java.util.List;
 
