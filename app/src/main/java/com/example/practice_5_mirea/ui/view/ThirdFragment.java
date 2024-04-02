@@ -19,7 +19,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.practice_5_mirea.R;
-import com.example.practice_5_mirea.data.models.Good;
+import com.example.practice_5_mirea.data.models.Product;
 import com.example.practice_5_mirea.ui.viewModels.OrderViewModel;
 
 import java.util.List;
@@ -28,7 +28,7 @@ public class ThirdFragment extends Fragment {
     public static class SecondFragmentRecyclerViewAdapter extends
             RecyclerView.Adapter <SecondFragmentRecyclerViewAdapter.ViewHolder>{
         private final LayoutInflater inflater;
-        private final List<Good> items;
+        private final List<Product> items;
 
         //
         private OnItemClicked onClick;
@@ -38,7 +38,7 @@ public class ThirdFragment extends Fragment {
         }
         //
 
-        SecondFragmentRecyclerViewAdapter(Context context, List<Good>
+        SecondFragmentRecyclerViewAdapter(Context context, List<Product>
                 items) {
             this.items = items;
             this.inflater = LayoutInflater.from(context);
@@ -54,7 +54,7 @@ public class ThirdFragment extends Fragment {
         public void
         onBindViewHolder(SecondFragmentRecyclerViewAdapter.ViewHolder
                                  holder, int position) {
-            Good item = items.get(position);
+            Product item = items.get(position);
             holder.textView1.setText(item.getGoodName());
             holder.textView2.setText(item.getGoodAmount());
             String number = Integer.toString(position + 1);
@@ -91,6 +91,7 @@ public class ThirdFragment extends Fragment {
     }
 
     Button addMoreGoodsButton;
+    Button deleteGoodsButton;
 
     public ThirdFragment() {
         super(R.layout.fragment_third);
@@ -103,16 +104,18 @@ public class ThirdFragment extends Fragment {
         NavController navController = Navigation.findNavController(view);
 
         addMoreGoodsButton = (Button) getActivity().findViewById(R.id.third_fragment_button);
+        deleteGoodsButton = (Button) getActivity().findViewById(R.id.third_fragment_button_clean);
 
         RecyclerView itemsList = getActivity().findViewById(R.id.third_fragment_recycler_view);
 
         OrderViewModel orderViewModel = new ViewModelProvider(getActivity()).get(OrderViewModel.class);
 
         orderViewModel.getUiState().observe(getViewLifecycleOwner(), uiState -> {
-            List<Good> items = uiState.getOrderedPositions();
+            List<Product> items = uiState.getOrderedPositions();
 
             if (items == null || items.size() == 0) {
                 itemsList.setVisibility(View.GONE);
+                deleteGoodsButton.setVisibility(View.GONE);
                 Toast.makeText(getActivity(), "There is no purchased goods", Toast.LENGTH_SHORT).show();
             }
             else {
@@ -128,9 +131,9 @@ public class ThirdFragment extends Fragment {
                     @Override
                     public void onItemClick(int position) {
                         if (orderViewModel.getUiState().getValue() != null) {
-                            Good good = (Good) orderViewModel.getUiState().getValue().getGood(position);
+                            Product product = (Product) orderViewModel.getUiState().getValue().getGood(position);
                             Bundle bundle = new Bundle();
-                            bundle.putSerializable("Good", good);
+                            bundle.putSerializable("Good", product);
                             navController.navigate(R.id.action_thirdFragment_to_fourthFragment, bundle);
                         }
                     }
@@ -144,6 +147,16 @@ public class ThirdFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Navigation.findNavController(view).navigate(R.id.action_thirdFragment_to_firstFragment);
+            }
+        });
+
+        deleteGoodsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                itemsList.setVisibility(View.GONE);
+                orderViewModel.getUiState().getValue().cleanDatabase();
+                deleteGoodsButton.setVisibility(View.GONE);
+                Toast.makeText(getActivity(), "There is no purchased goods", Toast.LENGTH_SHORT).show();
             }
         });
     }

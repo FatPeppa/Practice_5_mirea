@@ -1,13 +1,19 @@
 package com.example.practice_5_mirea.data.repository;
 
-import com.example.practice_5_mirea.data.models.Good;
+import android.content.Context;
+
+import com.example.practice_5_mirea.data.models.Product;
 
 import java.util.ArrayList;
 
 public interface OrderRepository {
 
-    ArrayList<Good> getOrderedPositions();
-    void setOrderedPositions(ArrayList<Good> orderedPositions);
-    void putGood(Good good);
-    Good getGood(int position);
+    ArrayList<Product> getOrderedPositions();
+    void setOrderedPositions(ArrayList<Product> orderedPositions);
+    void putGood(Product product);
+    Product getGood(int position);
+
+    void createDatabase(Context context, ArrayList<Product> values);
+
+    void cleanDatabase();
 }

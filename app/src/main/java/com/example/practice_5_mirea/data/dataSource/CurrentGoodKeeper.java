@@ -1,16 +1,16 @@
 package com.example.practice_5_mirea.data.dataSource;
 
-import com.example.practice_5_mirea.data.models.Good;
+import com.example.practice_5_mirea.data.models.Product;
 
 public class CurrentGoodKeeper {
-    private final Good[] currentGood = new Good[1];
-    public CurrentGoodKeeper (Good good) {this.currentGood[0] = good;}
+    private final Product[] currentProduct = new Product[1];
+    public CurrentGoodKeeper (Product product) {this.currentProduct[0] = product;}
 
-    public Good getCurrentGood() {
-        return currentGood[0];
+    public Product getCurrentGood() {
+        return currentProduct[0];
     }
 
-    public void SetCurrentGood(Good good) {
-        this.currentGood[0] = good;
+    public void SetCurrentGood(Product product) {
+        this.currentProduct[0] = product;
     }
 }

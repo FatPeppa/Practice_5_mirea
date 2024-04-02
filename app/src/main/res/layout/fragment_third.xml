@@ -8,7 +8,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/third_fragment_recycler_view"
         android:layout_width="match_parent"
-        android:layout_height="700dp"
+        android:layout_height="650dp"
         android:layout_marginBottom="76dp"
 
         app:layout_constraintBottom_toBottomOf="@id/third_fragment_button"
@@ -21,9 +21,20 @@
         android:layout_height="wrap_content"
         android:text="@string/fragment_third_button_text"
         app:layout_constraintTop_toBottomOf="@id/third_fragment_recycler_view"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/third_fragment_button_clean"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/third_fragment_button_clean"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:backgroundTint="#C80808"
+        android:text="@string/fragment_third_button_clean_text"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/third_fragment_button" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

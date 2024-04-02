@@ -1,7 +1,6 @@
 <resources>
     <string name="app_name">Practice_5_mirea</string>
 
-
     <string name="fragment_main_button_text1">Заказать товар</string>
     <string name="fragment_main_button_text2">Просмотреть заказанные товары</string>
 
@@ -17,6 +16,7 @@
     <string name="fragment_second_button_text2">Да</string>
 
     <string name="fragment_third_button_text">Добавить ещё один товар</string>
+    <string name="fragment_third_button_clean_text">Очистить список заказов</string>
 
     <string name="first_fragment_list_view_item_text_view_text1">Наименование товара:</string>
     <string name="first_fragment_list_view_item_text_view_text2">Стоимость товара:</string>

@@ -2,13 +2,15 @@ package com.example.practice_5_mirea.data.models;
 
 import java.io.Serializable;
 
-public class Good implements Serializable {
+public class Product implements Serializable {
+    private int id;
+
     private String goodName;
     private String goodAmount;
 
-    public Good() {}
+    public Product() {}
 
-    public Good(String goodName, String goodAmount) {
+    public Product(String goodName, String goodAmount) {
         this.goodName = goodName;
         this.goodAmount = goodAmount;
     }
@@ -27,5 +29,13 @@ public class Good implements Serializable {
 
     public String getGoodAmount() {
         return goodAmount;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getId() {
+        return id;
     }
 }

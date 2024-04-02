@@ -12,8 +12,12 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import com.example.practice_5_mirea.R;
-import com.example.practice_5_mirea.ui.viewModels.GoodViewModel;
+import com.example.practice_5_mirea.data.models.Product;
+import com.example.practice_5_mirea.ui.viewModels.ProductViewModel;
 import com.example.practice_5_mirea.ui.viewModels.OrderViewModel;
+
+import java.util.ArrayList;
+import java.util.Objects;
 
 
 public class SecondFragment extends Fragment {
@@ -40,9 +44,9 @@ public class SecondFragment extends Fragment {
         //Информация о товаре
         second_fragment_text_view = getActivity().findViewById(R.id.fragment_second_text_view2);
 
-        GoodViewModel goodViewModel = new ViewModelProvider(getActivity()).get(GoodViewModel.class);
+        ProductViewModel productViewModel = new ViewModelProvider(getActivity()).get(ProductViewModel.class);
         OrderViewModel orderViewModel = new ViewModelProvider(getActivity()).get(OrderViewModel.class);
-        goodViewModel.getUiState().observe(getViewLifecycleOwner(), uiState -> {
+        productViewModel.getUiState().observe(getViewLifecycleOwner(), uiState -> {
             String info = uiState.getCurrentGoodName() + " " + uiState.getCurrentGoodAmount();
             second_fragment_text_view.setText(info);
         });
@@ -62,8 +66,18 @@ public class SecondFragment extends Fragment {
         secondFragmentButton2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                orderViewModel.addGoodToOrder(goodViewModel.getUiState().getValue().getGood());
-                goodViewModel.inputGoodParameters(null, null);
+                if (Objects.requireNonNull(orderViewModel.getUiState().getValue()).getOrderedPositions() == null)
+                    orderViewModel.getUiState().getValue().createDatabase(getActivity().getApplicationContext(), null);
+
+                ArrayList<Product> products = orderViewModel.getUiState().getValue().getOrderedPositions();
+                int id = 0;
+                if (products != null) id = products.size();
+
+                Product productToInput = productViewModel.getUiState().getValue().getGood();
+                productToInput.setId(id);
+
+                orderViewModel.addGoodToOrder(productToInput);
+                productViewModel.inputGoodParameters(null, null);
 
                 Navigation.findNavController(view).navigate(R.id.action_secondFragment_to_thirdFragment);
             }

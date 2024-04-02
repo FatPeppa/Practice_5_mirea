@@ -15,7 +15,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import com.example.practice_5_mirea.R;
-import com.example.practice_5_mirea.ui.viewModels.GoodViewModel;
+import com.example.practice_5_mirea.ui.viewModels.ProductViewModel;
 
 public class FirstFragment extends Fragment {
     Button first_fragment_button;
@@ -36,9 +36,10 @@ public class FirstFragment extends Fragment {
         first_fragment_button = (Button) getActivity().findViewById(R.id.fragment_first_button);
         first_fragment_edit_text1 = (EditText) getActivity().findViewById(R.id.fragment_first_edit_text1);
         first_fragment_edit_text2 = (EditText) getActivity().findViewById(R.id.fragment_first_edit_text2);
-        GoodViewModel goodViewModel = new ViewModelProvider(getActivity()).get(GoodViewModel.class);
+        ProductViewModel productViewModel = new ViewModelProvider(getActivity()).get(ProductViewModel.class);
+        productViewModel.getUiState().getValue().createCurrentInfoKeeper(getActivity().getApplicationContext());
 
-        goodViewModel.getUiState().observe(getViewLifecycleOwner(), uiState -> {
+        productViewModel.getUiState().observe(getViewLifecycleOwner(), uiState -> {
             if (uiState.getCurrentGoodName() != null && uiState.getCurrentGoodAmount() != null) {
                 first_fragment_edit_text1.setText(uiState.getCurrentGoodName());
                 first_fragment_edit_text2.setText(uiState.getCurrentGoodAmount());
@@ -58,7 +59,7 @@ public class FirstFragment extends Fragment {
                     if (checkGoodAmount(good_amount)) {
                         //order.setGoodAmount(good_amount);
 
-                        goodViewModel.inputGoodParameters(good_name, good_amount);
+                        productViewModel.inputGoodParameters(good_name, good_amount);
 
                         //Bundle bundle = new Bundle();
                         //bundle.putSerializable("Order", order);

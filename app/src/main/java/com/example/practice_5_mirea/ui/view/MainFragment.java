@@ -12,10 +12,8 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import com.example.practice_5_mirea.R;
-import com.example.practice_5_mirea.data.models.Good;
 import com.example.practice_5_mirea.ui.viewModels.OrderViewModel;
-
-import java.util.ArrayList;
+import com.example.practice_5_mirea.ui.viewModels.ProductViewModel;
 
 public class MainFragment extends Fragment {
     Button main_fragment_button1;
@@ -31,8 +29,14 @@ public class MainFragment extends Fragment {
         main_fragment_button2 = (Button) getActivity().findViewById(R.id.fragment_main_button2);
         main_fragment_text_view = (TextView) getActivity().findViewById(R.id.text_view);
         OrderViewModel order = new ViewModelProvider(getActivity()).get(OrderViewModel.class);
+        order.createOrder(getActivity().getApplicationContext(), null);
+
         order.getUiState().observe(getViewLifecycleOwner(), uiState -> {
-            int arrayLength = uiState.getOrderedPositions().size();
+            int arrayLength;
+            if (uiState != null && uiState.getOrderedPositions() != null)
+                arrayLength = uiState.getOrderedPositions().size();
+            else
+                arrayLength = 0;
             String info = "На данный момент заказано товаров: " + Integer.toString(arrayLength);
             main_fragment_text_view.setText(info);
         });
@@ -49,5 +53,10 @@ public class MainFragment extends Fragment {
                 Navigation.findNavController(view).navigate(R.id.action_mainFragment_to_thirdFragment);
             }
         });
+
+        ProductViewModel productViewModel = new ViewModelProvider(getActivity()).get(ProductViewModel.class);
+        productViewModel.getUiState().getValue().createCurrentInfoKeeper(getActivity().getApplicationContext());
+        productViewModel.getUiState().getValue().setCurrentGoodAmount("");
+        productViewModel.getUiState().getValue().setCurrentGoodName("");
     }
 }

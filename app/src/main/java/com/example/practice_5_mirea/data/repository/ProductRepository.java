@@ -1,12 +1,16 @@
 package com.example.practice_5_mirea.data.repository;
 
-import com.example.practice_5_mirea.data.models.Good;
+import android.content.Context;
 
-public interface GoodRepository {
+import com.example.practice_5_mirea.data.models.Product;
+
+public interface ProductRepository {
     String getCurrentGoodName();
     String getCurrentGoodAmount();
     void setCurrentGoodName(String goodName);
 
     void setCurrentGoodAmount(String goodAmount);
-    Good getGood();
+    Product getGood();
+
+    void createCurrentInfoKeeper(Context context);
 }

@@ -12,7 +12,7 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
 import com.example.practice_5_mirea.R;
-import com.example.practice_5_mirea.data.models.Good;
+import com.example.practice_5_mirea.data.models.Product;
 
 public class FourthFragment extends Fragment {
     Button goBack;
@@ -28,11 +28,11 @@ public class FourthFragment extends Fragment {
         goBack = (Button) getActivity().findViewById(R.id.fragment_fourth_button);
 
         Bundle args = getArguments();
-        Good good = null;
+        Product product = null;
 
         if (args != null) {
-            good = (Good) args.getSerializable("Good");
-            String info = good != null ? good.getGoodName() + " " + good.getGoodAmount() : null;
+            product = (Product) args.getSerializable("Good");
+            String info = product != null ? product.getGoodName() + " " + product.getGoodAmount() : null;
             goodInfo.setText(info);
         } else {
             Toast.makeText(getActivity(), "An error with good transition occurred!", Toast.LENGTH_SHORT).show();
