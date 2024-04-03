@@ -33,10 +33,21 @@ public class CommonFilesDataSource {
                     File sdcard = Environment.getExternalStorageDirectory();
 
                     if (file == null || !file.exists()) {
-                        File dir = new File(sdcard.getAbsolutePath() + "/text/");
-                        if (!dir.mkdir()) return false;
+                        //File dir = new File(sdcard.getAbsolutePath() + "/test");
+                        //if (!dir.mkdir()) return false;
+                        //dir.mkdir();
+                        String dir = sdcard.getAbsolutePath() + "/someFolder/";
+                        file = new File(dir + fileName + ".txt");
 
-                        file = new File(dir, fileName);
+                        //file = new File(sdcard.getAbsolutePath() + "/" + fileName + ".txt");
+                        try {
+                            new File(dir).mkdirs();     // make sure to call mkdirs() when creating new directory
+                            file.createNewFile();
+
+                            //file.createNewFile();
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
                     }
                     FileOutputStream os = null;
                     try {
@@ -57,13 +68,13 @@ public class CommonFilesDataSource {
         return true;
     }
 
-    public String readAppSpecificDS() {
+    public String readFile() {
         if (file == null || !file.exists()) return null;
 
         FileInputStream fis = null;
 
         try {
-            fis = context.openFileInput(fileName);
+            fis = new FileInputStream(file);
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }

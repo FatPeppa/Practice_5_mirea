@@ -16,6 +16,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Practice_5_mirea"
+        android:requestLegacyExternalStorage="true"
         tools:targetApi="31">
 
         <activity
