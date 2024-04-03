@@ -53,16 +53,10 @@ public class FirstFragment extends Fragment {
                 String good_amount = first_fragment_edit_text2.getText().toString();
 
                 if (checkGoodName(good_name)) {
-                    //order.setGoodName(good_name);
-                    //bundle.putSerializable("Order", order);
 
                     if (checkGoodAmount(good_amount)) {
-                        //order.setGoodAmount(good_amount);
 
                         productViewModel.inputGoodParameters(good_name, good_amount);
-
-                        //Bundle bundle = new Bundle();
-                        //bundle.putSerializable("Order", order);
                         Navigation.findNavController(view).navigate(R.id.action_firstFragment_to_secondFragment);
                     } else {
                         first_fragment_edit_text2.setText("");

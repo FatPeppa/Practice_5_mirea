@@ -20,7 +20,7 @@ public interface ProductDAO {
     @Query("SELECT * FROM products WHERE id= :uid")
     ProductEntity findById(int uid);
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertAll(ArrayList<ProductEntity> productEntities);
     @Delete
     void delete(ProductEntity productEntity);

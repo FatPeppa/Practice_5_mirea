@@ -51,7 +51,6 @@ public class AppSpecificDataSource {
 
         return contents;
     }
-
     public void writeAppSpecificDS(String inputContent) {
         try (FileOutputStream fos = appSpDSContext.openFileOutput(dsFileName, Context.MODE_PRIVATE)) {
             fos.write(inputContent.getBytes());

@@ -23,9 +23,6 @@ public class SharedPreferencesDataSource {
         if (!sharedPref.getString(key, "").equals("")) editor.remove(key);
         editor.putString("R.string." + key, content);
         editor.apply();
-
-        int s = 1;
-        s = 2;
     }
 
     public void writeContent(String key, int content) {

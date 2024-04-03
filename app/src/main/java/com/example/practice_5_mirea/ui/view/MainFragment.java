@@ -95,7 +95,12 @@ public class MainFragment extends Fragment {
                     ArrayList<Product> orderList = order.getUiState().getValue().getOrderedPositions();
                     if (orderList != null && orderList.size() > 0) {
                         for (Product product : orderList) {
-                            dbStringBuilder.append("id: ").append(product.getId()).append("; name: ").append(product.getGoodName()).append("; amount: ").append(product.getGoodAmount()).append(";\n");
+                            dbStringBuilder.append("id: ").append(product.getId())
+                                    .append("; name: ")
+                                    .append(product.getGoodName())
+                                    .append("; amount: ")
+                                    .append(product.getGoodAmount())
+                                    .append(";\n");
                         }
 
                         filesRepository.writeIntoAppSpecDS(dbStringBuilder.toString());
@@ -103,7 +108,8 @@ public class MainFragment extends Fragment {
                         String result = filesRepository.readFromAppSpecDS();
 
                         if (result != null)
-                            Toast.makeText(getActivity(), "В файл AppSpecificDS было записано символов: " + result.length(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(), "В файл AppSpecificDS было записано символов: " + result.length(), Toast.LENGTH_SHORT)
+                                    .show();
                     }
                 }
             });
@@ -116,7 +122,12 @@ public class MainFragment extends Fragment {
 
                     if (orderList != null && orderList.size() > 0) {
                         for (Product product : orderList) {
-                            dbStringBuilder.append("id: ").append(product.getId()).append("; name: ").append(product.getGoodName()).append("; amount: ").append(product.getGoodAmount()).append(";\n");
+                            dbStringBuilder.append("id: ")
+                                    .append(product.getId())
+                                    .append("; name: ")
+                                    .append(product.getGoodName()).append("; amount: ")
+                                    .append(product.getGoodAmount())
+                                    .append(";\n");
                         }
 
                         if (!filesRepository.writeIntoCommonFilesDS(dbStringBuilder.toString())) {
@@ -131,7 +142,8 @@ public class MainFragment extends Fragment {
 
                         String result = filesRepository.readFromCommonFilesDS();
                         if (result != null)
-                            Toast.makeText(getActivity(), "В файл CommonFilesDS было записано символов: " + result.length(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(), "В файл CommonFilesDS было записано символов: " + result.length(), Toast.LENGTH_SHORT)
+                                    .show();
                     }
                 }
             });

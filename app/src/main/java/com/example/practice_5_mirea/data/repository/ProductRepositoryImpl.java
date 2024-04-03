@@ -2,7 +2,6 @@ package com.example.practice_5_mirea.data.repository;
 
 import android.content.Context;
 
-import com.example.practice_5_mirea.data.dataSource.CurrentGoodKeeper;
 import com.example.practice_5_mirea.data.dataSource.SP.SharedPreferencesDataSource;
 import com.example.practice_5_mirea.data.models.Product;
 
@@ -16,17 +15,14 @@ public class ProductRepositoryImpl implements ProductRepository, Serializable {
         if (currentProductInfoKeeper == null)
             currentProductInfoKeeper = new SharedPreferencesDataSource(context);
     }
-
     public String getCurrentGoodName() {
         if (currentProductInfoKeeper == null) return null;
         else return currentProductInfoKeeper.getStringRecord("R.string.GoodName");
     }
-
     public String getCurrentGoodAmount() {
         if (currentProductInfoKeeper == null) return null;
         else return currentProductInfoKeeper.getStringRecord("R.string.GoodAmount");
     }
-
     public void setCurrentGoodName(String goodName) {
         if (currentProductInfoKeeper == null) return;
         else currentProductInfoKeeper.writeContent("GoodName", goodName);
