@@ -1,10 +1,11 @@
 <resources>
     <string name="app_name">Practice_5_mirea</string>
 
-    <string name="fragment_main_button_text1">Заказать товар</string>
+    <string name="fragment_main_button_text1">Добавить товар в заказ</string>
     <string name="fragment_main_button_text2">Просмотреть заказанные товары</string>
     <string name="fragment_main_button_text3">Сохранить текущие записи списка товаров в AppSpecificDS</string>
     <string name="fragment_main_button_text4">Сохранить текущие записи списка товаров в CommonFilesDS</string>
+    <string name="fragment_main_button_text5">Поделиться текстом из файла со списком товаров</string>
 
     <string name="fragment_first_text_view_text1">Введите наименование товара</string>
     <string name="fragment_first_text_view_2_text">Введите количество выбранного товара</string>
@@ -17,7 +18,7 @@
     <string name="fragment_second_button_text1">Вернуться ко вводу параметров товара</string>
     <string name="fragment_second_button_text2">Да</string>
 
-    <string name="fragment_third_button_text">Добавить ещё один товар</string>
+    <string name="fragment_third_button_text">Вернуться на главную страницу</string>
     <string name="fragment_third_button_clean_text">Очистить список заказов</string>
 
     <string name="first_fragment_list_view_item_text_view_text1">Наименование товара:</string>

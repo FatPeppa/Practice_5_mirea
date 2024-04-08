@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -15,6 +16,8 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import com.example.practice_5_mirea.R;
+import com.example.practice_5_mirea.domain.InputTextExecutor;
+import com.example.practice_5_mirea.domain.InputsValidator;
 import com.example.practice_5_mirea.ui.viewModels.ProductViewModel;
 
 public class FirstFragment extends Fragment {
@@ -38,6 +41,20 @@ public class FirstFragment extends Fragment {
         first_fragment_edit_text2 = (EditText) getActivity().findViewById(R.id.fragment_first_edit_text2);
         ProductViewModel productViewModel = new ViewModelProvider(getActivity()).get(ProductViewModel.class);
         productViewModel.getUiState().getValue().createCurrentInfoKeeper(getActivity().getApplicationContext());
+
+        Bundle bundle = this.getArguments();
+        if (bundle != null) {
+            String sharedText = bundle.getString("sharedText");
+            if (sharedText != null && InputsValidator.checkSharedProductInfo(sharedText)) {
+                String name = InputTextExecutor.getProductName(sharedText);
+                String amount = InputTextExecutor.getProductAmount(sharedText);
+                productViewModel.inputGoodParameters(name, amount);
+
+                Toast.makeText(getContext(), "Параметры товара успешно считаны.", Toast.LENGTH_LONG).show();
+            } else {
+                Toast.makeText(getContext(), "Ошибка при чтении параметров товара из текста: некорректный формат", Toast.LENGTH_LONG).show();
+            }
+        }
 
         productViewModel.getUiState().observe(getViewLifecycleOwner(), uiState -> {
             if (uiState.getCurrentGoodName() != null && uiState.getCurrentGoodAmount() != null) {

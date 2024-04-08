@@ -146,7 +146,7 @@ public class ThirdFragment extends Fragment {
         addMoreGoodsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Navigation.findNavController(view).navigate(R.id.action_thirdFragment_to_firstFragment);
+                Navigation.findNavController(view).navigate(R.id.action_thirdFragment_to_mainFragment);
             }
         });
 
