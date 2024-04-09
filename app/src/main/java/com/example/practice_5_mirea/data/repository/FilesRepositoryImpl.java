@@ -6,10 +6,18 @@ import com.example.practice_5_mirea.data.dataSource.Files.AppSpecificDataSource;
 import com.example.practice_5_mirea.data.dataSource.Files.CommonFilesDataSource;
 
 public class FilesRepositoryImpl implements FilesRepository{
-    private final AppSpecificDataSource appSpecificDataSource;
-    private final CommonFilesDataSource commonFilesDataSource;
+    private AppSpecificDataSource appSpecificDataSource = null;
+    private CommonFilesDataSource commonFilesDataSource = null;
+
+    public FilesRepositoryImpl() {}
 
     public FilesRepositoryImpl(Context context, String appSpecDSFileName, String commonFilesDSFileName) {
+        appSpecificDataSource = new AppSpecificDataSource(context, appSpecDSFileName);
+        commonFilesDataSource = new CommonFilesDataSource(context, commonFilesDSFileName);
+    }
+
+    @Override
+    public void createFiles(Context context, String appSpecDSFileName, String commonFilesDSFileName) {
         appSpecificDataSource = new AppSpecificDataSource(context, appSpecDSFileName);
         commonFilesDataSource = new CommonFilesDataSource(context, commonFilesDSFileName);
     }

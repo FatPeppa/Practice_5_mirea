@@ -3,6 +3,7 @@ package com.example.practice_5_mirea.ui.view;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -20,6 +21,7 @@ import com.example.practice_5_mirea.data.models.Product;
 import com.example.practice_5_mirea.data.repository.FilesRepository;
 import com.example.practice_5_mirea.data.repository.FilesRepositoryImpl;
 import com.example.practice_5_mirea.domain.ProductEntityToProductConverter;
+import com.example.practice_5_mirea.ui.viewModels.MainFragmentASFSInteractingViewModel;
 import com.example.practice_5_mirea.ui.viewModels.OrderViewModel;
 import com.example.practice_5_mirea.ui.viewModels.ProductViewModel;
 
@@ -88,6 +90,10 @@ public class MainFragment extends Fragment {
                 "dbHistory"
         );
 
+        MainFragmentASFSInteractingViewModel mainFragmentASFSInteractingViewModel
+                = new ViewModelProvider(getActivity()).get(MainFragmentASFSInteractingViewModel.class);
+        mainFragmentASFSInteractingViewModel.createFiles(getActivity().getApplicationContext());
+
         if (main_fragment_text_view.getText().equals("На данный момент заказано товаров: 0")) {
             main_fragment_button3.setVisibility(View.GONE);
             main_fragment_button4.setVisibility(View.GONE);
@@ -107,12 +113,13 @@ public class MainFragment extends Fragment {
                                     .append(";\n");
                         }
 
-                        filesRepository.writeIntoAppSpecDS(dbStringBuilder.toString());
+                        mainFragmentASFSInteractingViewModel.startInput(dbStringBuilder.toString());
 
-                        String result = filesRepository.readFromAppSpecDS();
+                        String result = mainFragmentASFSInteractingViewModel.startOutput();
 
                         if (result != null)
-                            Toast.makeText(getActivity(), "В файл AppSpecificDS было записано символов: " + result.length(), Toast.LENGTH_SHORT)
+                            Toast.makeText(getActivity(), "В файл AppSpecificDS было записано символов: "
+                                            + result.length(), Toast.LENGTH_SHORT)
                                     .show();
                     }
                 }
