@@ -3,13 +3,19 @@ package com.example.practice_5_mirea.ui.viewModels;
 import android.content.Context;
 import android.util.Log;
 
+import androidx.annotation.NonNull;
+import androidx.lifecycle.LifecycleOwner;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModel;
+import androidx.work.WorkInfo;
 
 import com.example.practice_5_mirea.data.repository.FilesRepository;
 import com.example.practice_5_mirea.data.repository.FilesRepositoryImpl;
 
 import java.util.Objects;
+import java.util.UUID;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
@@ -34,7 +40,7 @@ public class MainFragmentASFSInteractingViewModel extends ViewModel {
         Objects.requireNonNull(filesRepo.getValue()).createFiles(
                 context,
                 "appSpecificFile",
-                "commonStorageFile"
+                null
         );
     }
 
@@ -90,7 +96,11 @@ public class MainFragmentASFSInteractingViewModel extends ViewModel {
         return "InputThread or OutputThread are already started.";
     }
 
-    public String startOutput() {
+    public LiveData<String> getOutputFileThreadResult() {
+        return new MutableLiveData<>(startOutput());
+    }
+
+    private String startOutput() {
         if (filesRepo.getValue() == null) return null;
 
         if (!isInputThreadStarted.getValue().booleanValue() && !isOutputThreadStarted.getValue().booleanValue()) {
@@ -113,7 +123,7 @@ public class MainFragmentASFSInteractingViewModel extends ViewModel {
 
             try {
                 Log.i(TAG, "Output from app-specific file process finished successfully");
-                String res = future.get(8000, TimeUnit.MILLISECONDS); //to delete
+                String res = future.get(8000, TimeUnit.MILLISECONDS);
                 stopExecutorService();
                 isInputThreadStarted.postValue(false);
                 return res;

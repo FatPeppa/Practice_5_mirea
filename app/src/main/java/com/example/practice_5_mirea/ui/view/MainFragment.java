@@ -15,17 +15,21 @@ import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
+import androidx.work.WorkInfo;
 
 import com.example.practice_5_mirea.R;
+import com.example.practice_5_mirea.data.dataSource.Files.CommonFilesDataSource;
 import com.example.practice_5_mirea.data.models.Product;
 import com.example.practice_5_mirea.data.repository.FilesRepository;
 import com.example.practice_5_mirea.data.repository.FilesRepositoryImpl;
 import com.example.practice_5_mirea.domain.ProductEntityToProductConverter;
 import com.example.practice_5_mirea.ui.viewModels.MainFragmentASFSInteractingViewModel;
+import com.example.practice_5_mirea.ui.viewModels.MainFragmentCFInteractingViewModel;
 import com.example.practice_5_mirea.ui.viewModels.OrderViewModel;
 import com.example.practice_5_mirea.ui.viewModels.ProductViewModel;
 
 import java.util.ArrayList;
+import java.util.UUID;
 
 public class MainFragment extends Fragment {
     private final int PERMISSION_REQUEST_CODE = 80;
@@ -115,15 +119,20 @@ public class MainFragment extends Fragment {
 
                         mainFragmentASFSInteractingViewModel.startInput(dbStringBuilder.toString());
 
-                        String result = mainFragmentASFSInteractingViewModel.startOutput();
-
-                        if (result != null)
-                            Toast.makeText(getActivity(), "В файл AppSpecificDS было записано символов: "
-                                            + result.length(), Toast.LENGTH_SHORT)
-                                    .show();
+                        mainFragmentASFSInteractingViewModel.getOutputFileThreadResult().observe(
+                                getActivity(), result -> {
+                                    if (result != null) {
+                                        Toast.makeText(getActivity(), "В файл AppSpecificDS было записано символов: "
+                                                        + result.length(), Toast.LENGTH_SHORT)
+                                                .show();
+                                    }
+                                }
+                        );
                     }
                 }
             });
+            MainFragmentCFInteractingViewModel mainFragmentCFInteractingViewModel
+                    = new MainFragmentCFInteractingViewModel(getActivity().getApplication());
 
             main_fragment_button4.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -139,18 +148,24 @@ public class MainFragment extends Fragment {
                                     .append(product.getGoodAmount())
                                     .append(";\n");
                         }
-                        if (!filesRepository.writeIntoCommonFilesDS(dbStringBuilder.toString())) {
+
+                        if (!CommonFilesDataSource.checkPermission(getActivity().getApplicationContext()))
                             requestPermission();
-                            try {
-                                Thread.sleep(3000);
-                            } catch (InterruptedException e) {
-                                throw new RuntimeException(e);
-                            }
-                            filesRepository.writeIntoCommonFilesDS(dbStringBuilder.toString());
-                        }
-                        String result = filesRepository.readFromCommonFilesDS();
-                        if (result != null)
-                            Toast.makeText(getActivity(), "В файл CommonFilesDS было записано символов: " + result.length(), Toast.LENGTH_SHORT).show();
+
+                        mainFragmentCFInteractingViewModel.inputToFile(dbStringBuilder.toString());
+
+
+                        UUID requestForFileOutputId = mainFragmentCFInteractingViewModel.outputFromFile();
+
+                        mainFragmentCFInteractingViewModel.getWorkInfoByIdLiveData(requestForFileOutputId)
+                                .observe(getActivity(), workInfo -> {
+                                    if (workInfo.getState() != null &&
+                                            workInfo.getState() == WorkInfo.State.SUCCEEDED) {
+                                        String result = workInfo.getOutputData().getString("OutputString");
+                                                Toast.makeText(getActivity(), "В файл CommonFilesDS было записано символов: "
+                                                        + result.length(), Toast.LENGTH_SHORT).show();
+                                    }
+                        });
                     }
                 }
             });

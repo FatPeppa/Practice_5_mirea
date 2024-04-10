@@ -29,7 +29,7 @@ public class CommonFilesDataSource {
         if (!inputContent.isEmpty()) {
             String state = Environment.getExternalStorageState();
             if (Environment.MEDIA_MOUNTED.equals(state)) {
-                if (checkPermission()) {
+                if (checkPermission(this.context)) {
                     File sdcard = Environment.getExternalStorageDirectory();
 
                     if (file == null || !file.exists()) {
@@ -62,37 +62,45 @@ public class CommonFilesDataSource {
     }
 
     public String readFile() {
-        if (file == null || !file.exists()) return null;
+        String state = Environment.getExternalStorageState();
+        if (Environment.MEDIA_MOUNTED.equals(state)) {
+            File sdcard = Environment.getExternalStorageDirectory();
+            String dir = sdcard.getAbsolutePath() + "/someFolder/";
+            file = new File(dir + fileName + ".txt");
 
-        FileInputStream fis = null;
+            if (!file.exists()) return null;
 
-        try {
-            fis = new FileInputStream(file);
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
-        }
+            FileInputStream fis = null;
 
-        String contents = null;
-        InputStreamReader isr = new InputStreamReader(fis, StandardCharsets.UTF_8);
-        StringBuilder sb = new StringBuilder();
-
-        try (BufferedReader reader = new BufferedReader(isr)) {
-            String line = reader.readLine();
-            while (line != null) {
-                sb.append(line).append('\n');
-                line = reader.readLine();
+            try {
+                fis = new FileInputStream(file);
+            } catch (FileNotFoundException e) {
+                throw new RuntimeException(e);
             }
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        } finally {
-            contents = sb.toString();
-        }
 
-        return contents;
+            String contents = null;
+            InputStreamReader isr = new InputStreamReader(fis, StandardCharsets.UTF_8);
+            StringBuilder sb = new StringBuilder();
+
+            try (BufferedReader reader = new BufferedReader(isr)) {
+                String line = reader.readLine();
+                while (line != null) {
+                    sb.append(line).append('\n');
+                    line = reader.readLine();
+                }
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            } finally {
+                contents = sb.toString();
+            }
+
+            return contents;
+        }
+        return null;
     }
 
 
-    private boolean checkPermission() {
+    public static boolean checkPermission(Context context) {
         int result = ContextCompat.checkSelfPermission(context, android.Manifest.permission.WRITE_EXTERNAL_STORAGE);
         return result == PackageManager.PERMISSION_GRANTED;
     }

@@ -5,7 +5,9 @@ import android.content.Context;
 import com.example.practice_5_mirea.data.dataSource.Files.AppSpecificDataSource;
 import com.example.practice_5_mirea.data.dataSource.Files.CommonFilesDataSource;
 
-public class FilesRepositoryImpl implements FilesRepository{
+import java.io.Serializable;
+
+public class FilesRepositoryImpl implements FilesRepository, Serializable {
     private AppSpecificDataSource appSpecificDataSource = null;
     private CommonFilesDataSource commonFilesDataSource = null;
 
@@ -18,8 +20,10 @@ public class FilesRepositoryImpl implements FilesRepository{
 
     @Override
     public void createFiles(Context context, String appSpecDSFileName, String commonFilesDSFileName) {
-        appSpecificDataSource = new AppSpecificDataSource(context, appSpecDSFileName);
-        commonFilesDataSource = new CommonFilesDataSource(context, commonFilesDSFileName);
+        if (appSpecDSFileName != null)
+            appSpecificDataSource = new AppSpecificDataSource(context, appSpecDSFileName);
+        if (commonFilesDSFileName != null)
+            commonFilesDataSource = new CommonFilesDataSource(context, commonFilesDSFileName);
     }
 
     @Override
