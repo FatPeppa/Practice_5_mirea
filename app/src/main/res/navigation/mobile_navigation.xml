@@ -3,7 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@id/mainFragment">
+    app:startDestination="@id/mainFragment"
+    app:enterAnim="@anim/fade_in_main_fragment"
+    app:exitAnim="@anim/fade_out_main_fragment"
+    app:popEnterAnim="@anim/fade_in_main_fragment"
+    app:popExitAnim="@anim/fade_out_main_fragment">
 
     <fragment
         android:id="@+id/mainFragment"
@@ -13,10 +17,18 @@
 
         <action
             android:id="@+id/action_mainFragment_to_firstFragment"
-            app:destination="@id/firstFragment"/>
+            app:destination="@id/firstFragment"
+            app:enterAnim="@anim/slide_in_right_first_fragment"
+            app:exitAnim="@anim/slide_out_left_first_fragment"
+            app:popEnterAnim="@anim/slide_in_left_first_fragment"
+            app:popExitAnim="@anim/slide_out_right_first_fragment"/>
         <action
             android:id="@+id/action_mainFragment_to_thirdFragment"
-            app:destination="@id/thirdFragment" />
+            app:destination="@id/thirdFragment"
+            app:enterAnim="@anim/fade_in_third_fragment"
+            app:exitAnim="@anim/fade_out_third_fragment"
+            app:popEnterAnim="@anim/fade_in_third_fragment"
+            app:popExitAnim="@anim/fade_out_third_fragment"/>
     </fragment>
 
     <fragment
@@ -27,7 +39,11 @@
 
         <action
             android:id="@+id/action_firstFragment_to_secondFragment"
-            app:destination="@id/secondFragment"/>
+            app:destination="@id/secondFragment"
+            app:enterAnim="@anim/slide_in_down_second_fragment"
+            app:exitAnim="@anim/slide_out_up_second_fragment"
+            app:popEnterAnim="@anim/slide_in_up_second_fragment"
+            app:popExitAnim="@anim/slide_out_down_second_fragment"/>
     </fragment>
 
     <fragment
@@ -37,10 +53,18 @@
         tools:layout="@layout/fragment_second">
         <action
             android:id="@+id/action_secondFragment_to_thirdFragment"
-            app:destination="@id/thirdFragment" />
+            app:destination="@id/thirdFragment"
+            app:enterAnim="@anim/fade_in_third_fragment"
+            app:exitAnim="@anim/fade_out_third_fragment"
+            app:popEnterAnim="@anim/fade_in_third_fragment"
+            app:popExitAnim="@anim/fade_out_third_fragment"/>
         <action
             android:id="@+id/action_secondFragment_to_firstFragment"
-            app:destination="@id/firstFragment" />
+            app:destination="@id/firstFragment"
+            app:enterAnim="@anim/slide_in_up_second_fragment"
+            app:exitAnim="@anim/slide_out_down_second_fragment"
+            app:popEnterAnim="@anim/slide_in_down_second_fragment"
+            app:popExitAnim="@anim/slide_out_up_second_fragment"/>
     </fragment>
 
     <fragment
@@ -50,10 +74,18 @@
         tools:layout="@layout/fragment_third">
         <action
             android:id="@+id/action_thirdFragment_to_fourthFragment"
-            app:destination="@id/fourthFragment" />
+            app:destination="@id/fourthFragment"
+            app:enterAnim="@anim/slide_in_right_fourth_fragment"
+            app:exitAnim="@anim/slide_out_left_fourth_fragment"
+            app:popEnterAnim="@anim/slide_in_left_fourth_fragment"
+            app:popExitAnim="@anim/slide_out_right_fourth_fragment"/>
         <action
             android:id="@+id/action_thirdFragment_to_mainFragment"
-            app:destination="@id/mainFragment" />
+            app:destination="@id/mainFragment"
+            app:enterAnim="@anim/fade_in_main_fragment"
+            app:exitAnim="@anim/fade_out_main_fragment"
+            app:popEnterAnim="@anim/fade_in_main_fragment"
+            app:popExitAnim="@anim/fade_out_main_fragment"/>
     </fragment>
 
     <fragment
@@ -63,6 +95,10 @@
         tools:layout="@layout/fragment_fourth">
         <action
             android:id="@+id/action_fourthFragment_to_thirdFragment"
-            app:destination="@id/thirdFragment" />
+            app:destination="@id/thirdFragment"
+            app:enterAnim="@anim/slide_in_left_fourth_fragment"
+            app:exitAnim="@anim/slide_out_right_fourth_fragment"
+            app:popEnterAnim="@anim/slide_in_right_fourth_fragment"
+            app:popExitAnim="@anim/slide_out_left_fourth_fragment"/>
     </fragment>
 </navigation>
