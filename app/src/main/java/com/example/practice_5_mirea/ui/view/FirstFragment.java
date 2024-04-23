@@ -3,11 +3,10 @@ package com.example.practice_5_mirea.ui.view;
 import static com.example.practice_5_mirea.domain.InputsValidator.checkGoodAmount;
 import static com.example.practice_5_mirea.domain.InputsValidator.checkGoodName;
 
-import android.graphics.drawable.Animatable;
 import android.graphics.drawable.AnimatedVectorDrawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
-import android.view.animation.Animation;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -20,15 +19,30 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import com.example.practice_5_mirea.R;
+import com.example.practice_5_mirea.api.DTO.response_dto.BookDTO;
+import com.example.practice_5_mirea.api.FakeRestAPI;
+import com.example.practice_5_mirea.api.RetrofitFactory;
 import com.example.practice_5_mirea.domain.InputTextExecutor;
 import com.example.practice_5_mirea.domain.InputsValidator;
 import com.example.practice_5_mirea.ui.viewModels.ProductViewModel;
 
+import java.util.List;
+import java.util.Random;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+
 public class FirstFragment extends Fragment {
+    public final String URL_API =
+            "https://fakerestapi.azurewebsites.net/";
+
     ImageView imageView;
-    Button first_fragment_button;
+    Button get_book_name_from_website_button;
     EditText first_fragment_edit_text1;
     EditText first_fragment_edit_text2;
+
 
     public FirstFragment() {super(R.layout.fragment_first);}
 
@@ -44,6 +58,8 @@ public class FirstFragment extends Fragment {
         first_fragment_edit_text1 = (EditText) getActivity().findViewById(R.id.fragment_first_edit_text1);
         first_fragment_edit_text2 = (EditText) getActivity().findViewById(R.id.fragment_first_edit_text2);
         imageView = (ImageView) getActivity().findViewById(R.id.imageView);
+        get_book_name_from_website_button = (Button) getActivity().findViewById(R.id.button);
+
         AnimatedVectorDrawable drawable = (AnimatedVectorDrawable) imageView.getDrawable();
         drawable.reset();
 
@@ -97,5 +113,51 @@ public class FirstFragment extends Fragment {
                 }
             }
         });
+
+        get_book_name_from_website_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setRandomBookTitleFromApi();
+            }
+        });
+    }
+
+    private void setRandomBookTitleFromApi() {
+        Retrofit retrofit =
+                RetrofitFactory.getRetrofit(URL_API);
+        FakeRestAPI fakeRestAPI =
+                retrofit.create(FakeRestAPI.class);
+
+        Call<List<BookDTO>> call = fakeRestAPI.getBooks();
+
+        call.enqueue(new Callback<List<BookDTO>>() {
+            @Override
+            public void onResponse(Call<List<BookDTO>> call,
+                    Response<List<BookDTO>> response) {
+                if (response.isSuccessful()) {
+                    List<BookDTO> books = response.body();
+                    Log.d("Api Response", "Getting books from api finished successfully");
+
+                    Random random = new Random();
+                    int random_index = random.nextInt(books.size());
+                    first_fragment_edit_text1.setText(books.get(random_index).getTitle());
+
+                    Toast.makeText(getContext(), "Наименование одной из "
+                            + books.size() + " полученных книг установлено успешно", Toast.LENGTH_LONG).show();
+                } else {
+                    Log.d("Api Response", "Getting books from api finished unsuccessfully");
+                    Toast.makeText(getContext(), "Произошла ошибка во время выполнения операции.", Toast.LENGTH_LONG).show();
+                    return;
+                }
+            }
+            @Override
+            public void onFailure(Call<List<BookDTO>> call,
+                    Throwable t) {
+                Log.d("Api Call", "Error occurred.");
+                Toast.makeText(getContext(), "Произошла ошибка во время выполнения операции.", Toast.LENGTH_LONG).show();
+            }
+        });
+
+        Log.d("API LOG","getRandomBookTitleFromApi() method call");
     }
 }

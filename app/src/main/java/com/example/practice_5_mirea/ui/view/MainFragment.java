@@ -1,5 +1,7 @@
 package com.example.practice_5_mirea.ui.view;
 
+import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
@@ -12,6 +14,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
@@ -71,14 +74,22 @@ public class MainFragment extends Fragment {
         //переход к товару
         main_fragment_button1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                Navigation.findNavController(view).navigate(R.id.action_mainFragment_to_firstFragment);
+                if (checkInternetPermission(getActivity())) {
+                    Navigation.findNavController(view).navigate(R.id.action_mainFragment_to_firstFragment);
+                } else {
+                    requestInternetPermission();
+                }
             }
         });
         //переход к списку
         main_fragment_button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Navigation.findNavController(view).navigate(R.id.action_mainFragment_to_thirdFragment);
+                if (checkInternetPermission(getActivity())) {
+                    Navigation.findNavController(view).navigate(R.id.action_mainFragment_to_thirdFragment);
+                } else {
+                    requestInternetPermission();
+                }
             }
         });
 
@@ -150,7 +161,7 @@ public class MainFragment extends Fragment {
                         }
 
                         if (!CommonFilesDataSource.checkPermission(getActivity().getApplicationContext()))
-                            requestPermission();
+                            requestStoragePermission();
 
                         mainFragmentCFInteractingViewModel.inputToFile(dbStringBuilder.toString());
 
@@ -189,7 +200,20 @@ public class MainFragment extends Fragment {
             });
         }
     }
-    private void requestPermission() {
+    public static boolean checkInternetPermission(Context context) {
+        int result = ContextCompat.checkSelfPermission(context, Manifest.permission.INTERNET);
+        return result == PackageManager.PERMISSION_GRANTED;
+    }
+
+    private void requestInternetPermission() {
+        if (ActivityCompat.shouldShowRequestPermissionRationale(getActivity(), Manifest.permission.INTERNET)) {
+            Toast.makeText(getContext(), "Please allow Internet permission in App Settings.", Toast.LENGTH_LONG).show();
+        } else {
+            ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.INTERNET}, PERMISSION_REQUEST_CODE);
+        }
+    }
+
+    private void requestStoragePermission() {
         if (ActivityCompat.shouldShowRequestPermissionRationale(getActivity(), android.Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
             Toast.makeText(getContext(), "Write External Storage permission allows us to create files. Please allow this permission in App Settings.", Toast.LENGTH_LONG).show();
         } else {
